@@ -1,41 +1,41 @@
 {
-	"name": "BoilerPlate",
-	"version": "0.0.0",
+	"name": "ExtraTag",
+	"version": "0.0.1",
 	"author": [
-		"Your Name"
+		"Jason Tamez"
 	],
-	"url": "https://www.mediawiki.org/wiki/Extension:BoilerPlate",
-	"descriptionmsg": "boilerplate-desc",
+	"url": "https://www.mediawiki.org/wiki/Extension:ExtraTag",
+	"descriptionmsg": "extratag-desc",
 	"license-name": "MIT",
-	"type": "other",
+	"type": "parserhook",
 	"AutoloadClasses": {
-		"BoilerPlateHooks": "BoilerPlate.hooks.php",
+		"ExtraTagHooks": "ExtraTag.hooks.php",
 		"SpecialHelloWorld": "specials/SpecialHelloWorld.php"
 	},
 	"config": {
-		"BoilerPlateEnableFoo": true
+		"ExtraTagEnableFoo": true
 	},
 	"ExtensionMessagesFiles": {
-		"BoilerPlateAlias": "BoilerPlate.i18n.alias.php"
+		"ExtraTagAlias": "ExtraTag.i18n.alias.php"
 	},
 	"Hooks": {
-		"NameOfHook": [
-			"BoilerPlateHooks::onNameOfHook"
+		"ParserFirstCallInit": [
+			"ExtraTagHooks::onParserFirstCallInit"
 		]
 	},
 	"MessagesDirs": {
-		"BoilerPlate": [
+		"ExtraTag": [
 			"i18n"
 		]
 	},
 	"ResourceModules": {
-		"ext.boilerPlate.foo": {
+		"ext.extraTag.foo": {
 			"scripts": [
-				"modules/ext.boilerPlate.js",
-				"modules/ext.boilerPlate.foo.js"
+				"modules/ext.extraTag.js",
+				"modules/ext.extraTag.foo.js"
 			],
 			"styles": [
-				"modules/ext.boilerPlate.foo.css"
+				"modules/ext.extraTag.foo.css"
 			],
 			"messages": [],
 			"dependencies": []
@@ -43,7 +43,7 @@
 	},
 	"ResourceFileModulePaths": {
 		"localBasePath": "",
-		"remoteExtPath": "BoilerPlate"
+		"remoteExtPath": "ExtraTag"
 	},
 	"SpecialPages": {
 		"HelloWorld": "SpecialHelloWorld"

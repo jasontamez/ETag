@@ -7,11 +7,11 @@
  */
 
 
-$wgHooks['ParserFirstCallInit'][] = 'ExtraTag::onParserSetup';
+/* $wgHooks['ParserFirstCallInit'][] = 'ExtraTag::onParserSetup'; */
 
 class ExtraTagHooks {
 	// Register any render callbacks with the parser
-	function onParserSetup( Parser $parser ) {
+	function onParserFirstCallInit( Parser $parser ) {
 		// When the parser sees the <sample> tag, it executes renderTagSample (see below)
 		$parser->setHook( 'extratag', 'ExtraTag::renderTagExtraTag' );
 		$parser->setHook( 'etag', 'ExtraTag::renderTagExtraTag' );
