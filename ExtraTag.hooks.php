@@ -1,23 +1,24 @@
 <?php
 /**
- * Hooks for ETag extension
+ * Hooks for ExtraTag extension
  *
  * @file
  * @ingroup Extensions
  */
 
 
-$wgHooks['ParserFirstCallInit'][] = 'ETag::onParserSetup';
+$wgHooks['ParserFirstCallInit'][] = 'ExtraTag::onParserSetup';
 
-class ETagHooks {
+class ExtraTagHooks {
 	// Register any render callbacks with the parser
 	function onParserSetup( Parser $parser ) {
 		// When the parser sees the <sample> tag, it executes renderTagSample (see below)
-		$parser->setHook( 'etag', 'ETag::renderTagETag' );
+		$parser->setHook( 'extratag', 'ExtraTag::renderTagExtraTag' );
+		$parser->setHook( 'etag', 'ExtraTag::renderTagExtraTag' );
 	}
 
 	// Render <etag>
-	function renderTagETag( $input, array $args, Parser $parser, PPFrame $frame ) {
+	function renderTagExtraTag( $input, array $args, Parser $parser, PPFrame $frame ) {
 		// Nothing exciting here, just escape the user-provided input and throw it back out again (as example)
 		return htmlspecialchars( $input );
 	}
