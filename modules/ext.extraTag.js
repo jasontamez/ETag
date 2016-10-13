@@ -1,10 +1,10 @@
 ( function () {
 
 	/**
-	 * @class mw.boilerPlate
+	 * @class mw.extraTag
 	 * @singleton
 	 */
-	mw.boilerPlate = {
+	mw.extraTag = {
 	};
 
 }() );
