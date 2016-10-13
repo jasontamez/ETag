@@ -1,6 +1,6 @@
 <?php
 /**
- * Aliases for special pages of the ETag extension
+ * Aliases for special pages of the ExtraTag extension
  *
  * @file
  * @ingroup Extensions
