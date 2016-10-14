@@ -7,8 +7,6 @@
  */
 
 
-/* $wgHooks['ParserFirstCallInit'][] = 'ExtraTag::onParserSetup'; */
-
 class ExtraTagHooks {
 	// Register any render callbacks with the parser
 	public static function onParserFirstCallInit( Parser $parser ) {
@@ -25,20 +23,20 @@ class ExtraTagHooks {
 		$pre = '';
 		$post = '';
 		foreach ($args as $name => $value) {
+		  // Check user-defined variables.
+		  // Currently, this will only use the LAST found argument, if multiple are given.
+		  // To-do: - Is there any way to utilize any/all arguments?
+		  //        - Is there any reason to pass the arguments' values?
 		  if(isset($wgExtraTagSubstitutions[$name])) {
+		    // 'argument' => array('pre text', 'post text');
 		    $code = $wgExtraTagSubstitutions[$name];
 		    $pre = array_shift($code);
 		    $post = array_shift($code);
 		  }
 		}
+		// Parse wikitext inside <extratag></extratag>
 		$output = $parser->recursiveTagParse( $input, $frame );
 		return $pre.$output.$post;
 	}
 }
 
-
-
-/* Parser::setHook() Create an HTML-style tag, e.g. <yourtag>special text</yourtag>.
-   The callback should have the following form:
-     function myParserHook( $text, $params, $parser, $frame ) { ... }
-*/
