@@ -24,10 +24,10 @@ class ExtraTagHooks {
 		global $wgExtraTagSubstitutions;
 		$pre = '';
 		$post = '';
-		foreach ($args as $tag => array $code) {
-		  if(isset($wgExtraTagSubstitutions[$tag]) {
-		    $pre = array_shift($code);
-		    $post = array_shift($code);
+		foreach ($args as $name => $value) {
+		  if(isset($wgExtraTagSubstitutions[$name])) {
+		    $pre = array_shift($value);
+		    $post = array_shift($value);
 		  }
 		}
 		return $pre.htmlspecialchars( $input ).$post;
