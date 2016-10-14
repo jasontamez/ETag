@@ -6,9 +6,9 @@
  * @ingroup Extensions
  */
 
-class SpecialHelloWorld extends SpecialPage {
+class SpecialExtraTagList extends SpecialPage {
 	public function __construct() {
-		parent::__construct( 'HelloWorld' );
+		parent::__construct( 'ExtraTagsList' );
 	}
 
 	/**
