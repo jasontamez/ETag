@@ -26,11 +26,13 @@ class ExtraTagHooks {
 		$post = '';
 		foreach ($args as $name => $value) {
 		  if(isset($wgExtraTagSubstitutions[$name])) {
-		    $pre = array_shift($value);
-		    $post = array_shift($value);
+		    $code = $wgExtraTagSubstitutions[$name];
+		    $pre = array_shift($code);
+		    $post = array_shift($code);
 		  }
 		}
-		return $pre.htmlspecialchars( $input ).$post;
+		$output = $parser->recursiveTagParse( $input, $frame );
+		return $pre.$output.$post;
 	}
 }
 
