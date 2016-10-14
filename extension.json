@@ -10,7 +10,7 @@
 	"type": "parserhook",
 	"AutoloadClasses": {
 		"ExtraTagHooks": "ExtraTag.hooks.php",
-		"SpecialHelloWorld": "specials/SpecialHelloWorld.php"
+		"SpecialExtraTagList": "specials/SpecialExtraTagList.php"
 	},
 	"config": {
 		"ExtraTagEnableFoo": true
@@ -46,7 +46,7 @@
 		"remoteExtPath": "ExtraTag"
 	},
 	"SpecialPages": {
-		"HelloWorld": "SpecialHelloWorld"
+		"ExtraTagList": "SpecialExtraTagList"
 	},
 	"manifest_version": 1
 }
