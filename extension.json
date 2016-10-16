@@ -1,52 +1,47 @@
 {
-	"name": "ExtraTag",
+	"name": "LocalTag",
 	"version": "0.0.1",
 	"author": [
 		"Jason Tamez"
 	],
-	"url": "https://www.mediawiki.org/wiki/Extension:ExtraTag",
-	"descriptionmsg": "extratag-desc",
+	"url": "https://www.mediawiki.org/wiki/Extension:LocalTag",
+	"descriptionmsg": "localtag-desc",
 	"license-name": "MIT",
 	"type": "parserhook",
 	"AutoloadClasses": {
-		"ExtraTagHooks": "ExtraTag.hooks.php",
-		"SpecialExtraTagList": "specials/SpecialExtraTagList.php"
+		"LocalTagHooks": "LocalTag.hooks.php",
+		"SpecialLocalTagList": "specials/SpecialLocalTagList.php"
 	},
 	"config": {
-		"ExtraTagEnableFoo": true
+		"LocalTagEnableFoo": true
 	},
 	"ExtensionMessagesFiles": {
-		"ExtraTagAlias": "ExtraTag.i18n.alias.php"
+		"LocalTagAlias": "LocalTag.i18n.alias.php"
 	},
 	"Hooks": {
 		"ParserFirstCallInit": [
-			"ExtraTagHooks::onParserFirstCallInit"
+			"LocalTagHooks::onParserFirstCallInit"
 		]
 	},
 	"MessagesDirs": {
-		"ExtraTag": [
+		"LocalTag": [
 			"i18n"
 		]
 	},
 	"ResourceModules": {
-		"ext.extraTag.foo": {
-			"scripts": [
-				"modules/ext.extraTag.js",
-				"modules/ext.extraTag.foo.js"
-			],
-			"styles": [
-				"modules/ext.extraTag.foo.css"
-			],
+		"ext.localTag.foo": {
+			"scripts": [],
+			"styles": [],
 			"messages": [],
 			"dependencies": []
 		}
 	},
 	"ResourceFileModulePaths": {
 		"localBasePath": "",
-		"remoteExtPath": "ExtraTag"
+		"remoteExtPath": "LocalTag"
 	},
 	"SpecialPages": {
-		"ExtraTagList": "SpecialExtraTagList"
+		"LocalTagList": "SpecialLocalTagList"
 	},
 	"manifest_version": 1
 }
