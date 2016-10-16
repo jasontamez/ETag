@@ -6,9 +6,9 @@
  * @ingroup Extensions
  */
 
-class SpecialExtraTagList extends SpecialPage {
+class SpecialLocalTagList extends SpecialPage {
 	public function __construct() {
-		parent::__construct( 'ExtraTagsList' );
+		parent::__construct( 'LocalTagsList' );
 	}
 
 	/**
@@ -20,11 +20,11 @@ class SpecialExtraTagList extends SpecialPage {
 	public function execute( $sub ) {
 		$out = $this->getOutput();
 
-		$out->setPageTitle( $this->msg( 'boilerplate-helloworld' ) );
+//		$out->setPageTitle( $this->msg( 'boilerplate-helloworld' ) );
 
-		$out->addHelpLink( 'How to become a MediaWiki hacker' );
+//		$out->addHelpLink( 'How to become a MediaWiki hacker' );
 
-		$out->addWikiMsg( 'boilerplate-helloworld-intro' );
+//		$out->addWikiMsg( 'boilerplate-helloworld-intro' );
 
 		$formDescriptor = [
 			'myfield1' => [

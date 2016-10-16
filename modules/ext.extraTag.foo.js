@@ -6,7 +6,7 @@
 	}
 
 	/**
-	 * @class mw.extraTag.Foo
+	 * @class mw.localTag.Foo
 	 *
 	 * @constructor
 	 */
@@ -32,6 +32,6 @@
 		}
 	};
 
-	mw.extraTag.Foo = Foo;
+	mw.localTag.Foo = Foo;
 
 }() );

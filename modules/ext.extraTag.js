@@ -1,10 +1,10 @@
 ( function () {
 
 	/**
-	 * @class mw.extraTag
+	 * @class mw.localTag
 	 * @singleton
 	 */
-	mw.extraTag = {
+	mw.localTag = {
 	};
 
 }() );
