@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jason Tamez"
+		]
+	},
+	"localtag-desc": "{{desc|name=LocalTag|url=https://www.mediawiki.org/wiki/Extension:LocalTag}}",
+	"localtag-i18n-welcome": "Used to greet the user when reading the i18n/??.json file."
+}
