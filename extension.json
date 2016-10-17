@@ -29,12 +29,6 @@
 		]
 	},
 	"ResourceModules": {
-		"ext.localTag.foo": {
-			"scripts": [],
-			"styles": [],
-			"messages": [],
-			"dependencies": []
-		}
 	},
 	"ResourceFileModulePaths": {
 		"localBasePath": "",
