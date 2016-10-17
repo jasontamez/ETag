@@ -1,6 +1,6 @@
 <?php
 /**
- * HelloWorld SpecialPage for BoilerPlate extension
+ * HelloWorld SpecialPage for LocalTag extension
  *
  * @file
  * @ingroup Extensions
@@ -15,7 +15,7 @@ class SpecialLocalTagList extends SpecialPage {
 	 * Show the page to the user
 	 *
 	 * @param string $sub The subpage string argument (if any).
-	 *  [[Special:HelloWorld/subpage]].
+	 *  [[Special:LocalTagList/subpage]].
 	 */
 	public function execute( $sub ) {
 		$out = $this->getOutput();
@@ -78,7 +78,7 @@ class SpecialLocalTagList extends SpecialPage {
 		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext(), 'testform' );
 
 		$htmlForm->setSubmitText( 'Foo submit' );
-		$htmlForm->setSubmitCallback( [ 'SpecialHelloWorld', 'trySubmit' ] );
+		$htmlForm->setSubmitCallback( [ 'SpecialLocalTagList', 'trySubmit' ] );
 
 		$htmlForm->show();
 	}
