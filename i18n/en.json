@@ -3,8 +3,5 @@
 		"authors": []
 	},
 	"localtag-desc": "This is an example extension",
-	"localtag-i18n-welcome": "Welcome to the localization file of the LocalTag extension.",
-//	"localtag-helloworld": "Hello world!",
-//	"localtag-helloworld-intro": "Welcome to the \"Hello world\" special page of the LocalTag extension.",
-//	"helloworld": "Hello world"
+	"localtag-i18n-welcome": "Welcome to the localization file of the LocalTag extension."
 }
