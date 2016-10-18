@@ -14,25 +14,30 @@ class LocalTagHooks {
 
 	// Render <localtag>
 	public static function renderTagLocalTag( $input, array $args, Parser $parser, PPFrame $frame ) {
-		// Load global with the user-defined definitions.
-		global $wgLocalTagSubstitutions;
+		// Load global with the user-defined attributes and settings.
+		global $wgLocalTagSubstitutions,$wgLocalTagSettings;
+		// Load settings.
+		$verbose = isset( $wgLocalTagSettings['verboseBadArgs'] ) ? $wgLocalTagSettings['verboseBadArgs'] : false ;
+		$sep = isset( $wgLocalTagSettings['argumentSeparator'] ) ? $wgLocalTagSettings['argumentSeparator'] : '!';
+		$mark = isset( $wgLocalTagSettings['argumentMarker'] ) ? $wgLocalTagSettings['argumentMarker'] : '@@';
 		// Variable for text going before the content.
 		$pre = '';
 		// Variable for text going after the content.
 		$post = '';
 		// Variable holding any/all CSS needed.
 		$css = [];
-		// Variable holding all valid, defined arguments referenced in the localtag.
+		// Variable holding all valid, defined attributes referenced in the localtag.
 		$subs = [];
 		foreach ( $args as $name => $value ) {
-		  // Check for user-defined definitions.
-		  // Multiple arguments are possible. They will be wrapped in order around the content.
+		  // Check for user-defined attributes.
+		  // Multiple attributes are possible. They will be wrapped in order around the content.
 		  // Eg:  IN: <localtag foo bar baz>
 		  //     OUT: <foo><bar><baz>content</baz></bar></foo>
 		  // To-do: - Is there any way to utilize any/all arguments?
 		  //        - Is there any reason to pass the arguments' values?
+		  //        - What do we do when an attribute fails?
 		  if ( isset( $wgLocalTagSubstitutions[$name] ) ) {
-		  	// 'argument' => array( 'pre text', 'post text', 'css' );
+		  	// 'attribute' => array( 'pre text', 'post text', 'css' );
 		  	$code = $wgLocalTagSubstitutions[$name];
 		  	$foo = array_shift( $code ); // pre
 		  	$bar = array_shift( $code ); // post
