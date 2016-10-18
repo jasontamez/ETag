@@ -8,7 +8,7 @@
 
 class SpecialLocalTagList extends SpecialPage {
 	public function __construct() {
-		parent::__construct( 'LocalTagsList' );
+		parent::__construct( 'LocalTag' );
 	}
 
 	/**
