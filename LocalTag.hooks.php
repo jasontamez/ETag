@@ -28,30 +28,33 @@ class LocalTagHooks {
 		$css = [];
 		// Variable holding all valid, defined attributes referenced in the localtag.
 		$subs = [];
+		// HTML is case insensitive. So, make user-defines attributes lowercase.
+		$wgLocalTagSubstitutions = array_change_key_case( $wgLocalTagSubstitutions, CASE_LOWER );
+		$args = array_change_key_case( $args, CASE_LOWER );
 		foreach ( $args as $name => $value ) {
-		  // Check for user-defined attributes.
-		  // Multiple attributes are possible. They will be wrapped in order around the content.
-		  // Eg:  IN: <localtag foo bar baz>
-		  //     OUT: <foo><bar><baz>content</baz></bar></foo>
-		  // To-do: - Is there any way to utilize any/all arguments?
-		  //        - Is there any reason to pass the arguments' values?
-		  //        - What do we do when an attribute fails?
-		  if ( isset( $wgLocalTagSubstitutions[$name] ) ) {
-		  	// 'attribute' => array( 'pre text', 'post text', 'css' );
-		  	$code = $wgLocalTagSubstitutions[$name];
-		  	$foo = array_shift( $code ); // pre
-		  	$bar = array_shift( $code ); // post
-		  	$baz = array_shift( $code ); // css
-		  	$pre .= $foo;
-		  	$post = $bar.$post;
-		  	$subs[] = $name;
-		  	if ( $baz ) {
-			  	// Remove CSS from global, thus preventing multiple injections.
-			  	$wgLocalTagSubstitutions[$name] = [ $foo, $bar, '' ];
-			  	// Store CSS
-			  	$css[] = $baz;
-		  	}
-		  }
+			// Check for user-defined attributes.
+			// Multiple attributes are possible. They will be wrapped in order around the content.
+			// Eg:  IN: <localtag foo bar baz>
+			//     OUT: <foo><bar><baz>content</baz></bar></foo>
+			// To-do: - Is there any way to utilize any/all arguments?
+			//        - Is there any reason to pass the arguments' values?
+			//        - What do we do when an attribute fails?
+			if ( isset( $wgLocalTagSubstitutions[$name] ) ) {
+				// 'attribute' => array( 'pre text', 'post text', 'css' );
+				$code = $wgLocalTagSubstitutions[$name];
+				$foo = array_shift( $code ); // pre
+				$bar = array_shift( $code ); // post
+				$baz = array_shift( $code ); // css
+				$pre .= $foo;
+				$post = $bar.$post;
+				$subs[] = $name;
+				if ( $baz ) {
+					// Remove CSS from global, thus preventing multiple injections.
+					$wgLocalTagSubstitutions[$name] = [ $foo, $bar, '' ];
+					// Store CSS
+					$css[] = $baz;
+				}
+			}
 		}
 		if ( $css !== [] ) {
 			// Send collected CSS with a comment denoting what it's for.
