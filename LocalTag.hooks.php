@@ -17,22 +17,58 @@ class LocalTagHooks {
 		// Load global with the user-defined attributes and settings.
 		global $wgLocalTagSubstitutions,$wgLocalTagSettings;
 		// Load settings.
+		// 	verboseBadAtts
+		// 		: If true, insert a message to notify that an attribute wasn't found.
+		// 	argumentSeparator
+		// 		: Defaults to !.
+		// 		: Separates arguments in an attribute's value.
+		// 	argumentMarker
+		// 		: Defaults to @@.
+		// 		: Marks where arguments go in the administrator-defined attribute definitions.
+		// 
+		// EXAMPLES:
+		// 
+		// 	Wikitext:	<localtag example="justone">
+		// 	Definition:	<li>@@</li>
+		// 	Output: 	<li>justone</li>
+		// 
+		// 	Wikitext:	<localtag example="one!two!three">
+		// 	Definition:	<b>@@</b> <i>@@</i> <b>@@</b>
+		// 	Output: 	<b>one</b> <i>two</i> <b>three</b>
+		// 
+		// INCORRECT VALUE HANDLING:
+		// 
+		// 	Wikitext:	<localtag example>
+		// 	Definition:	<li>@@</li>
+		// 	Output: 	<li></li>
+		// 	(No value == empty string)
+		// 
+		// 	Wikitext:	<localtag example="one!two">
+		// 	Definition:	<li>@@</li><li>@@</li><li>@@</li>
+		// 	Output: 	<li>one</li><li>two</li><li></li>
+		// 	(Empty string for undefined extra definition values)
+		// 
+		// 	Wikitext:	<localtag example="one!two">
+		// 	Definition:	<li>@@</li>
+		// 	Output: 	<li>one</li>
+		// 	(Extra arguments in the value are ignored)
+		// 
 		$verbose = isset( $wgLocalTagSettings['verboseBadAtts'] ) ? $wgLocalTagSettings['verboseBadAtts'] : false ;
 		$sep = isset( $wgLocalTagSettings['argumentSeparator'] ) ? $wgLocalTagSettings['argumentSeparator'] : '!';
 		$mark = isset( $wgLocalTagSettings['argumentMarker'] ) ? $wgLocalTagSettings['argumentMarker'] : '@@';
-		// Variable for text going before the content.
+		// Variable for text/html going before the content.
 		$pre = '';
-		// Variable for text going after the content.
+		// Variable for text/html going after the content.
 		$post = '';
 		// Variable holding any/all CSS needed.
 		$css = [];
 		// Variable holding all valid, defined attributes referenced in the localtag.
 		$subs = [];
-		// HTML is case insensitive. So, make user-defines attributes lowercase.
+		// HTML is case insensitive. So, make user-defined attributes lowercase.
 		$wgLocalTagSubstitutions = array_change_key_case( $wgLocalTagSubstitutions, CASE_LOWER );
 		$args = array_change_key_case( $args, CASE_LOWER );
 		foreach ( $args as $name => $value ) {
-			// Check for user-defined attributes.
+			// Check for administrator-defined attributes.
 			// Multiple attributes are possible. They will be wrapped in order around the content.
 			// Eg:  IN: <localtag foo bar baz>
 			//     OUT: <foo><bar><baz>content</baz></bar></foo>
