@@ -35,6 +35,7 @@ class LocalTagHooks {
 		// 	Wikitext:	<localtag example="one!two!three">
 		// 	Definition:	<b>@@</b> <i>@@</i> <b>@@</b>
 		// 	Output: 	<b>one</b> <i>two</i> <b>three</b>
+		// 	(NOTE: argument markers are counted starting with the PRE text, then the POST text)
 		// 
 		// INCORRECT VALUE HANDLING:
 		// 
@@ -78,17 +79,62 @@ class LocalTagHooks {
 			if ( isset( $wgLocalTagSubstitutions[$name] ) ) {
 				// 'attribute' => array( 'pre text', 'post text', 'css' );
 				$code = $wgLocalTagSubstitutions[$name];
-				$foo = array_shift( $code ); // pre
-				$bar = array_shift( $code ); // post
-				$baz = array_shift( $code ); // css
-				$pre .= $foo;
-				$post = $bar.$post;
+				$originalPRE = array_shift( $code ); // pre
+				$originalPOST = array_shift( $code ); // post
+				$originalCSS = array_shift( $code ); // css
+				$givens = explode( $sep, $value ); // user-given arguments
+				$limit = uniqid();
+				// Load the pre and post text, separated by $sep
+				// $limit is used to mark the start and end, and the break between pre/post
+				// (this catches a definition marker at the start or end of pre/post)
+				$needed = explode( $mark, $originalPRE );
+				array_unshift( $needed, $limit );
+				$needed[] = $limit;
+				$needed = array_merge( $needed, explode( $mark, $originalPOST ) );
+				$FLAG = 0;
+				while ( $needed ) {
+					$testcase = array_shift( $needed );
+					if ( $testcase === $limit) {
+						switch ($FLAG) {
+							case 0:
+								// Case 0 (initial), set to true (handle pre text)
+								$FLAG = true;
+								break;
+							case true:
+								// Case true, set to false (handle post text)
+								$FLAG = false;
+							// Case false unneeded.
+						}
+					} else {
+						if ( $FLAG === true ) {
+							// We're in pre text
+							$pre .= $testcase;
+						} else {
+							// We're in post text
+							$post .= $testcase;
+						}
+						if ( $needed && $needed[0] !== $limit ) {
+							// We need to insert an argument
+							if ( $givens ) {
+								// We have argument(s) for insertion
+								if ( $FLAG ) {
+									$pre .= array_shift( $givens );
+								} else {
+									$post .= array_shift( $givens );
+								}
+							}
+						} // endif
+					} // end if/else
+				} // end while
+				// Store this attribute in the list of substitutions used.
 				$subs[] = $name;
-				if ( $baz ) {
+				if ( $originalCSS ) {
 					// Remove CSS from global, thus preventing multiple injections.
-					$wgLocalTagSubstitutions[$name] = [ $foo, $bar, '' ];
-					// Store CSS
-					$css[] = $baz;
+					$wgLocalTagSubstitutions[$name] = [ $originalPRE, $originalPOST, '' ];
+					// Store CSS (if not blank)
+					if( trim( $originalCSS ) ) {
+						$css[] = $originalCSS;
+					}
 				}
 			} elseif ( $verbose ) {
 				// Attribute not found. Alert via a message.
