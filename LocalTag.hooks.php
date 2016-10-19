@@ -17,7 +17,7 @@ class LocalTagHooks {
 		// Load global with the user-defined attributes and settings.
 		global $wgLocalTagSubstitutions,$wgLocalTagSettings;
 		// Load settings.
-		$verbose = isset( $wgLocalTagSettings['verboseBadArgs'] ) ? $wgLocalTagSettings['verboseBadArgs'] : false ;
+		$verbose = isset( $wgLocalTagSettings['verboseBadAtts'] ) ? $wgLocalTagSettings['verboseBadAtts'] : false ;
 		$sep = isset( $wgLocalTagSettings['argumentSeparator'] ) ? $wgLocalTagSettings['argumentSeparator'] : '!';
 		$mark = isset( $wgLocalTagSettings['argumentMarker'] ) ? $wgLocalTagSettings['argumentMarker'] : '@@';
 		// Variable for text going before the content.
@@ -54,6 +54,9 @@ class LocalTagHooks {
 					// Store CSS
 					$css[] = $baz;
 				}
+			} elseif ( $verbose ) {
+				// Attribute not found. Alert via a message.
+				$pre .= "[&gt;localtag $name&lt; not found]";
 			}
 		}
 		if ( $css !== [] ) {
