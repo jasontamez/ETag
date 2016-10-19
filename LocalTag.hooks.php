@@ -73,9 +73,6 @@ class LocalTagHooks {
 			// Multiple attributes are possible. They will be wrapped in order around the content.
 			// Eg:  IN: <localtag foo bar baz>
 			//     OUT: <foo><bar><baz>content</baz></bar></foo>
-			// To-do: - Is there any way to utilize any/all arguments?
-			//        - Is there any reason to pass the arguments' values?
-			//        - What do we do when an attribute fails?
 			if ( isset( $wgLocalTagSubstitutions[$name] ) ) {
 				// 'attribute' => array( 'pre text', 'post text', 'css' );
 				$code = $wgLocalTagSubstitutions[$name];
@@ -83,10 +80,10 @@ class LocalTagHooks {
 				$originalPOST = array_shift( $code ); // post
 				$originalCSS = array_shift( $code ); // css
 				$givens = explode( $sep, $value ); // user-given arguments
-				$limit = uniqid();
-				// Load the pre and post text, separated by $sep
+				// Load the pre and post text, separated by $mark
 				// $limit is used to mark the start and end, and the break between pre/post
 				// (this catches a definition marker at the start or end of pre/post)
+				$limit = uniqid();
 				$needed = explode( $mark, $originalPRE );
 				array_unshift( $needed, $limit );
 				$needed[] = $limit;
