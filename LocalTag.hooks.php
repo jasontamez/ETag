@@ -68,7 +68,7 @@ class LocalTagHooks {
 		if( $args === [] ) {
 			// No attributes were set! Nothing to do but throw an error, if desired.
 			if( $verbose ) {
-				$pre .= '[<strong>Error:</strong> &gt;localtag&lt; requires an/some attribute(s) to be effective]';
+				$pre .= '[<strong>Error:</strong> &lt;localtag&gt; requires an/some attribute(s) to be effective]';
 			}
 		} else {
 			// HTML is case insensitive. So, make user-defined attributes lowercase.
@@ -135,7 +135,7 @@ class LocalTagHooks {
 					}
 				} elseif ( $verbose ) {
 					// Attribute not found. Alert via a message.
-					$pre .= "[<strong>Error:</strong> &gt;localtag $name&lt; not defined]";
+					$pre .= "[<strong>Error:</strong> &lt;localtag $name&gt; not defined]";
 				} // end isset() if
 			} // end foreach loop
 			if ( $css !== [] ) {
