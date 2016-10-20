@@ -1,6 +1,8 @@
 {
 	"@metadata": {
-		"authors": []
+		"authors": [
+			"Jason Tamez"
+		]
 	},
 	"localtag-desc": "This is an example extension",
 	"localtag-i18n-welcome": "Welcome to the localization file of the LocalTag extension."
