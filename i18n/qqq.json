@@ -5,5 +5,7 @@
 		]
 	},
 	"localtag-desc": "{{desc|name=LocalTag|url=https://www.mediawiki.org/wiki/Extension:LocalTag}}",
-	"localtag-i18n-welcome": "Used to greet the user when reading the i18n/??.json file."
+	"localtag-i18n-welcome": "Used to greet the user when reading the i18n/??.json file.",
+	"localtag-special-title": "Page title of the LocalTag special page.",
+	"localtag-special-intro": "Text displayed on the LocalTag SpecialPage."
 }

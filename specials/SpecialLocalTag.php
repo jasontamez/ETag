@@ -20,11 +20,11 @@ class SpecialLocalTag extends SpecialPage {
 	public function execute( $sub ) {
 		$out = $this->getOutput();
 
-		$out->setPageTitle( $this->msg( 'boilerplate-helloworld' ) );
+		$out->setPageTitle( $this->msg( 'localtag-special-title' ) );
 
 		$out->addHelpLink( 'How to become a MediaWiki hacker' );
 
-// 		$out->addWikiMsg( 'boilerplate-helloworld-intro' );
+		$out->addWikiMsg( 'localtag-special-intro' );
 
 	}
 }

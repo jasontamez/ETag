@@ -4,6 +4,8 @@
 			"Jason Tamez"
 		]
 	},
-	"localtag-desc": "This is an example extension",
-	"localtag-i18n-welcome": "Welcome to the localization file of the LocalTag extension."
+	"localtag-desc": "Description of this extension.",
+	"localtag-i18n-welcome": "Welcome to the localization file of the LocalTag extension.",
+	"localtag-special-title": "LocalTag Attributes",
+	"localtag-special-intro": "Text displayed on the LocalTag SpecialPage."
 }
