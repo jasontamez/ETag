@@ -10,7 +10,7 @@
 	"type": "parserhook",
 	"AutoloadClasses": {
 		"LocalTagHooks": "LocalTag.hooks.php",
-		"SpecialLocalTagList": "specials/SpecialLocalTagList.php"
+		"SpecialLocalTag": "specials/SpecialLocalTag.php"
 	},
 	"config": {
 		"LocalTagEnableFoo": true
@@ -35,7 +35,7 @@
 		"remoteExtPath": "LocalTag"
 	},
 	"SpecialPages": {
-		"LocalTagList": "SpecialLocalTagList"
+		"LocalTag": "SpecialLocalTag"
 	},
 	"manifest_version": 1
 }
