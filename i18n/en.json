@@ -7,8 +7,7 @@
 	"localtag-desc": "Description of this extension.",
 	"localtag-i18n-welcome": "Welcome to the localization file of the LocalTag extension.",
 	"localtag-special-title": "LocalTag Attributes",
-	"localtag-special-intro": "The administrators have implemented &lt;localtag&gt; to provide extra tags you may use in markup."
-		."\n\n",
+	"localtag-special-intro": "The administrators have implemented &lt;localtag&gt; to provide extra tags you may use in markup.\n\n",
 	"localtag-attribute": "attribute",
 	"localtag-attributes": "attributes",
 	"localtag-value": "value",

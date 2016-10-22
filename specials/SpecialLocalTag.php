@@ -50,7 +50,7 @@ class SpecialLocalTag extends SpecialPage {
 		// documentation
 		$doc =	$this->msg( 'localtag-documentation' );
 		// wikitext
-		$wikt =	$this->msg( 'localtag-wikitext' );
+		$wikt =	' '.trim( $this->msg( 'localtag-wikitext' ) ).' ';
 // 		$x =	$this->msg( 'localtag-' );
 
 		// Gather settings
@@ -72,11 +72,13 @@ class SpecialLocalTag extends SpecialPage {
 
 		// Initialize variables we need to determine
 		$VALS =	false; // Are values asked for?
-		$ARGS =	false; // Are multiple arguments asked for?   SUBSTR_COUNT
+		$ARGS =	false; // Are multiple arguments asked for?
 
 		// Build table
+		// Wrap with <div> construct to help save mobile devices
+		$table = '<div style="overflow:auto; border=0; margin=0; padding=0; max-width:100%;">'."\n";
 		// Start with headers.
-		$table = '{| class="wikitable tableC"'."\n|-\n!".$att."\n!".ucfirst( $doc )."\n";
+		$table .= '{| class="wikitable tableC"'."\n|-\n!".ucfirst( $att )."\n!".ucfirst( $doc )."\n";
 		if( $html ) {
 			// We're showing HTML
 			$table .= "!HTML\n";
@@ -116,16 +118,19 @@ class SpecialLocalTag extends SpecialPage {
 					$x = $val;
 					$arrrglist = [ $val ];
 				}
-				$arglist = "=".$x;
+				$arglist = '="'.$x.'"';
 			}
 			// add attribute to the table
 			// add documentation to the table
-			$table .= "|<nowiki>".$attribute.$arglist"</nowiki>\n|".$d."\n";
+			$table .= '| class="monoc"| <nowiki>'.$attribute.$arglist."</nowiki>\n|".rtrim($d)."\n";
 			// if we're showing HTML, add it to the table
 			if ( $html ) {
 				// $z list of pre text, 'wikitext', and post text
 				//   list is deliminated by 'wikitext' and any arguments
-				$z = array_merge( array_push( explode( $mark, $h ), $wikt ), explode( $mark, $i ) );
+				$z = explode( $mark, $h );
+				$z[] = $wikt;
+				$y = explode( $mark, $i );
+				$z = array_merge( $z, $y );
 				$x = '';
 				while ( $z ) {
 					// pull first segment
@@ -135,22 +140,26 @@ class SpecialLocalTag extends SpecialPage {
 					if ( $z && $y !== $wikt && $z[0] !== $wikt ) {
 						// save the segment, plus an 'arg#'
 						$x .= htmlspecialchars( $y ).array_pop( $arrrglist );
-					} elseif ( $y !== $wikt ) {
-						// just save the segment
+					} else {
+						// save 'wikitext' or the segment
 						$x .= htmlspecialchars( $y );
 					}
 				}
 				// add the HTML without wiki translation
-				$table .= "|<nowiki>".$x."</nowiki>\n";
+				$table .= '| class="mono"| <nowiki>'.$x."</nowiki>\n";
 			}
 			// if we're showing CSS, add it to the table
 			if ( $css ) {
-				$table .= "|<nowiki>".$definitions[2]."</nowiki>\n";
+				$table .= '| class="mono"| <nowiki>'.$definitions[2]."</nowiki>\n";
 			}
 		} // end foreach
 		// End table
 		$table .= "|}\n";
+		// End mobile-friendly construct
+		$table .= "</div>\n";
 		// Send the table out
 		$out->addWikiText($table);
+		// Add CSS to style the table cells.
+		$out->addInlineStyle( 'table.wikitable td.mono { text-align: left; } td.mono,td.monoc { font-family: "courier new",monospace; font-size: 0.9em; }' );
 	}
 }
