@@ -110,9 +110,10 @@ class SpecialLocalTag extends SpecialPage {
 					$ARGS = true;
 					$arrrglist = [];
 					while ( $a > 0 ) {
-						array_unshift( $arrrglist, $ar.$a-- );
+						$arrrglist[] = $ar.$a--;
 					}
-					$x = implode( $sep, $arrrglist );
+					$z = array_reverse( $arrrglist );
+					$x = implode( $sep, $z );
 				} else {
 					// we only have one argument
 					$x = $val;
