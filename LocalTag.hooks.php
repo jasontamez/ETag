@@ -15,7 +15,8 @@ class LocalTagHooks {
 	// Render <localtag>
 	public static function renderTagLocalTag( $input, array $args, Parser $parser, PPFrame $frame ) {
 		// Load global with the user-defined attributes and settings.
-		global $wgLocalTagSubstitutions,$wgLocalTagSettings;
+		global $wgLocalTagSubstitutions, $wgLocalTagArgumentSeparator,
+			$wgLocalTagArgumentMarker, $wgLocalTagVerboseBadAtts;
 		// Load settings.
 		// 	verboseBadAtts
 		// 		: If true, insert a message to notify that an attribute wasn't found.
@@ -54,9 +55,9 @@ class LocalTagHooks {
 		// 	Output: 	<li>one</li>
 		// 	(Extra arguments in the value are ignored)
 		// 
-		$verbose = isset( $wgLocalTagSettings['verboseBadAtts'] ) ? $wgLocalTagSettings['verboseBadAtts'] : false ;
-		$sep = isset( $wgLocalTagSettings['argumentSeparator'] ) ? $wgLocalTagSettings['argumentSeparator'] : '!';
-		$mark = isset( $wgLocalTagSettings['argumentMarker'] ) ? $wgLocalTagSettings['argumentMarker'] : '@@';
+		$verbose	= $wgLocalTagVerboseBadAtts;
+		$sep		= $wgLocalTagArgumentSeparator;
+		$mark		= $wgLocalTagArgumentMarker;
 		// Variable for text/html going before the content.
 		$pre = '';
 		// Variable for text/html going after the content.

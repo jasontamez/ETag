@@ -13,7 +13,12 @@
 		"SpecialLocalTag": "specials/SpecialLocalTag.php"
 	},
 	"config": {
-		"LocalTagEnableFoo": true
+		"_prefix": 'wgLocalTag',
+		"ArgumentSeparator": '!',
+		"ArgumentMarker": '@@',
+		"VerboseBadAtts": false,
+		"ShowHTMLOnSpecialPage": false,
+		"ShowCSSOnSpecialPage": false
 	},
 	"ExtensionMessagesFiles": {
 		"LocalTagAlias": "LocalTag.i18n.alias.php"

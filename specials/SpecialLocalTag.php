@@ -18,7 +18,8 @@ class SpecialLocalTag extends SpecialPage {
 	 *  [[Special:LocalTagList/subpage]].
 	 */
 	public function execute( $sub ) {
-		global $wgLocalTagSubstitutions,$wgLocalTagSettings;
+		global $wgLocalTagSubstitutions, $wgLocalTagArgumentSeparator, $wgLocalTagArgumentMarker,
+			$wgLocalTagShowHTMLOnSpecialPage, $wgLocalTagShowCSSOnSpecialPage;
 
 		// Get output page object
 		$out = $this->getOutput();
@@ -60,15 +61,15 @@ class SpecialLocalTag extends SpecialPage {
 		$cnt =	count( $subs );
 		// $set = the string that separates arguments in the localtag declaration
 		//  e.g. -> the '!' in <localtag att="arg1!arg2">
-		$sep =	isset( $wgLocalTagSettings['argumentSeparator'] ) ? $wgLocalTagSettings['argumentSeparator'] : '!';
+		$sep =	$wgLocalTagArgumentSeparator;
 		// $mark = the string that represents where an argument goes in the pre text or post text
-		$mark =	isset( $wgLocalTagSettings['argumentMarker'] ) ? $wgLocalTagSettings['argumentMarker'] : '@@';
+		$mark =	$wgLocalTagArgumentMarker;
 		// $html = a true/false flag that represents whether the raw HTML of the pre text and
 		//   post text will be displayed on this Special page.
-		$html =	isset( $wgLocalTagSettings['showHTMLOnSpecialPage'] ) ? $wgLocalTagSettings['showHTMLOnSpecialPage'] : false;
+		$html =	$wgLocalTagShowHTMLOnSpecialPage;
 		// $css = a true/false flag that represents whether the raw CSS will be displayed on
 		//   this Special page.
-		$css =	isset( $wgLocalTagSettings['showCSSOnSpecialPage'] ) ? $wgLocalTagSettings['showCSSOnSpecialPage'] : false;
+		$css =	$wgLocalTagShowCSSOnSpecialPage;
 
 		// Initialize variables we need to determine
 		$VALS =	false; // Are values asked for?
