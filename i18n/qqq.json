@@ -17,5 +17,8 @@
 	"localtag-arg": "arg",
 	"localtag-documentation": "documentation",
 	"localtag-wikitext": "wikitext",
+	"localtag-error-require-attributes": "'''Error''': <localtag> requires one (or more) attributes to be effective.",
+	"localtag-error-attribute-undefined": "'''Error''': <localtag $1> not defined.",
+	"localtag-css-for-this": "CSS for LocalTag, using {{PLURAL:$2|this argument|these arguments}}: $1",
 	"localtag-x": ""
 }

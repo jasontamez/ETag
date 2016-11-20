@@ -69,7 +69,7 @@ class LocalTagHooks {
 		if( $args === [] ) {
 			// No attributes were set! Nothing to do but throw an error, if desired.
 			if( $verbose ) {
-				$pre .= '[<strong>Error:</strong> &lt;localtag&gt; requires an/some attribute(s) to be effective]';
+				$pre .= wfMessage( 'localtag-error-require-attributes' )->parse();
 			}
 		} else {
 			// HTML is case insensitive. So, make user-defined attributes lowercase.
@@ -136,14 +136,18 @@ class LocalTagHooks {
 					}
 				} elseif ( $verbose ) {
 					// Attribute not found. Alert via a message.
-					$pre .= "[<strong>Error:</strong> &lt;localtag $name&gt; not defined]";
+					$pre .= wfMessage( 'localtag-error-attribute-undefined', $name )->parse();
 				} // end isset() if
 			} // end foreach loop
 			if ( $css !== [] ) {
 				// Send collected CSS with a comment denoting what it's for.
 				array_unshift( $css,
 						'<style type="text/css">',
-						'/* CSS for LocalTag: '.implode( ' ', $subs ).' */' );
+						'/* '.wfMessage( 'localtag-css-for-this' )
+							->params( implode( ' ', $subs ) )
+							->numParams( count( $subs ) )
+							->text()
+							.' */' );
 				$CSS = implode( "\n\t", $css )."\n</style>\n";
 				$parser->getOutput()->addHeadItem( $CSS );
 			} // end $css if
