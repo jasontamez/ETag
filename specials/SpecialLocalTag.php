@@ -160,7 +160,7 @@ class SpecialLocalTag extends SpecialPage {
 		// End mobile-friendly construct
 		$table .= "</div>\n";
 		// Send the table out
-		$out->addWikiText($table);
+		$out->addWikiText( $table );
 		// Add CSS to style the table cells.
 		$out->addInlineStyle( 'table.wikitable td.mono { text-align: left; } td.mono,td.monoc { font-family: "courier new",monospace; font-size: 0.9em; }' );
 	}
