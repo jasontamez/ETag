@@ -36,16 +36,16 @@ class SpecialLocalTag extends SpecialPage {
 		// Get various words that may need translating.
 		// attribute
 		$att =	$this->msg( 'localtag-attribute' );
-		// attributes
-		$atts =	$this->msg( 'localtag-attributes' );
+			//// attributes
+			//$atts =	$this->msg( 'localtag-attributes' );
 		// value
 		$val =	$this->msg( 'localtag-value' );
-		// values
-		$vals =	$this->msg( 'localtag-values' );
-		// argument
-		$arg =	$this->msg( 'localtag-argument' );
-		// arguments
-		$args =	$this->msg( 'localtag-arguments' );
+			//// values
+			//$vals =	$this->msg( 'localtag-values' );
+			//// argument
+			//$arg =	$this->msg( 'localtag-argument' );
+			//// arguments
+			//$args =	$this->msg( 'localtag-arguments' );
 		// abbreviation for 'argument'
 		$ar =	$this->msg( 'localtag-arg' );
 		// documentation
@@ -79,7 +79,7 @@ class SpecialLocalTag extends SpecialPage {
 		// Wrap with <div> construct to help save mobile devices
 		$table = '<div style="overflow:auto; border=0; margin=0; padding=0; max-width:100%;">'."\n";
 		// Start with headers.
-		$table .= '{| class="wikitable tableC"'."\n|-\n!".ucfirst( $att )."\n!".ucfirst( $doc )."\n";
+		$table .= '{| class="wikitable tableC"'."\n|-\n!".$att."\n!".$doc."\n";
 		if( $html ) {
 			// We're showing HTML
 			$table .= "!HTML\n";
