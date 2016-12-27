@@ -13,9 +13,9 @@
 		"SpecialLocalTag": "specials/SpecialLocalTag.php"
 	},
 	"config": {
-		"_prefix": 'wgLocalTag',
-		"ArgumentSeparator": '!',
-		"ArgumentMarker": '@@',
+		"_prefix": "wgLocalTag",
+		"ArgumentSeparator": "!",
+		"ArgumentMarker": "@@",
 		"VerboseBadAtts": false,
 		"ShowHTMLOnSpecialPage": false,
 		"ShowCSSOnSpecialPage": false

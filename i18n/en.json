@@ -8,8 +8,7 @@
 	"localtag-i18n-welcome": "Welcome to the localization file of the LocalTag extension.",
 	"localtag-special-title": "LocalTag Attributes",
 	"localtag-special-intro": "The administrators have implemented &lt;localtag&gt; to provide extra tags you may use in markup.",
-	"localtag-attribute": "Attribute",
-		"localtag-attributes": "attributes",
+	"localtag-syntax": "Syntax",
 	"localtag-value": "value",
 		"localtag-values": "values",
 		"localtag-argument": "argument",
@@ -17,8 +16,10 @@
 	"localtag-arg": "arg",
 	"localtag-documentation": "Documentation",
 	"localtag-wikitext": "wikitext",
+	"localtag-content": "[content]",
 	"localtag-error-require-attributes": "'''Error''': &lt;localtag&gt; requires one (or more) attributes to be effective.",
 	"localtag-error-attribute-undefined": "'''Error''': &lt;localtag $1&gt; not defined.",
 	"localtag-css-for-this": "CSS for LocalTag, using {{PLURAL:$2|this argument|these arguments}}: $1",
+	"localtag-missing-html" : "The construct '$1' does not have any HTML associated with it. Using it will have zero effect, and is therefore discouraged.",
 	"localtag-x": ""
 }
