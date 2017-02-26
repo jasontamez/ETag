@@ -119,10 +119,8 @@ class SpecialLocalTag extends SpecialPage {
 			// construct the syntax
 			if( $openHTML && $closeHTML ) {
 				$syntax = '&lt;localtag '.$attribute.$arglist.'&gt;'.$content.'&lt;/localtag&gt;';
-			} elseif ( $openHTML ) {
-				$syntax = '&lt;localtag '.$attribute.$arglist.'&gt;'.$content;
-			} elseif ( $closeHTML ) {
-				$syntax = triml($content).'&lt;localtag '.$attribute.$arglist.'&gt';
+			} elseif ( $openHTML || $closeHTML ) {
+				$syntax = '&lt;localtag '.$attribute.$arglist.' /&gt;';
 			} else {
 				$syntax = $this->msg('localtag-missing-html', $attribute);
 			}
