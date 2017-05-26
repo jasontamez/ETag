@@ -75,7 +75,7 @@ class SpecialLocalTag extends SpecialPage {
 		// Wrap with <div> construct to help save mobile devices
 		$table = '<div style="overflow:auto; border=0; margin=0; padding=0; max-width:100%;">'."\n";
 		// Start with headers.
-		$table .= '{| class="wikitable tableC"'."\n|-\n!".$syn."\n!".$doc."\n";
+		$table .= '{| class="specialLocaltag"'."\n|-\n!".$syn."\n!".$doc."\n";
 		if( $html ) {
 			// We're showing HTML
 			$table .= "!HTML\n";
@@ -126,7 +126,7 @@ class SpecialLocalTag extends SpecialPage {
 			}
 			// add attribute to the table
 			// add documentation to the table
-			$table .= '| class="monoc"| <nowiki>'.$syntax."</nowiki>\n|".rtrim($d)."\n";
+			$table .= '| class="LTmono LTsyntax"| <nowiki>'.$syntax."</nowiki>\n".'| class="LTdoc"| '.rtrim( $d )."\n";
 			// if we're showing HTML, add it to the table
 			if ( $html ) {
 				// $z list of pre text, 'wikitext', and post text
@@ -150,12 +150,12 @@ class SpecialLocalTag extends SpecialPage {
 					}
 				}
 				// add the HTML without wiki translation
-				$table .= '| class="mono"| <nowiki>'.$x."</nowiki>\n";
+				$table .= '| class="LTmono LTHTML"| <nowiki>'.$x."</nowiki>\n";
 			}
 			// if we're showing CSS, add it to the table
 			if ( $css ) {
 				$css = ( isset($definitions['css'] ) ? $definitions['css'] : '' );
-				$table .= '| class="mono"| <nowiki>'.$css."</nowiki>\n";
+				$table .= '| class="LTmono LTCSS"| <nowiki>'.$css."</nowiki>\n";
 			}
 		} // end foreach $subs, $attribute, $definitions
 		// End table
@@ -165,6 +165,31 @@ class SpecialLocalTag extends SpecialPage {
 		// Send the table out
 		$out->addWikiText( $table );
 		// Add CSS to style the table cells.
-		$out->addInlineStyle( 'table.wikitable td.mono { text-align: left; } td.mono,td.monoc { font-family: "courier new",monospace; font-size: 0.9em; }' );
+		$inCSS  = '
+			table.specialLocaltag th,
+			table.specialLocaltag thead,
+			table.specialLocaltag tfoot,
+			table.specialLocaltag caption { display: none; }
+
+			table.specialLocaltag td,
+			table.specialLocaltag tr,
+			table.specialLocaltag { display: block; }
+
+			table.specialLocaltag tr:nth-child(even) { background: #f9f9f9; }
+
+			table.specialLocaltag td.LTmono { font-family: "courier new",monospace; font-size: 0.9em; }
+
+			table.specialLocaltag td.LTsyntax { margin-top: 1.5em; }
+
+			table.specialLocaltag td.LTdoc:before { font-weight: bold; font-family: inherit; content: \''.$doc.': \'; }
+
+			';
+		if( $html ) {
+			$inCSS .= "table.specialLocaltag td.LTHTML:before { font-weight: bold; font-family: inherit; content: 'HTML: '; } ";
+		}
+		if ( $css ) {
+			$inCSS .= "table.specialLocaltag td.LTCSS:before { font-weight: bold; font-family: inherit; content: 'CSS: '; } ";
+		}
+		$out->addInlineStyle( $inCSS );
 	}
 }
