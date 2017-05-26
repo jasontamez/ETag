@@ -88,11 +88,11 @@ class SpecialLocalTag extends SpecialPage {
 		foreach ( $subs as $attribute => $definitions ) {
 			$table .= "|-\n";
 			// $d = documentation
-			$d = (isset($definitions['doc']) ? $definitions['doc'] : '');
+			$d = ( isset( $definitions['doc'] ) ? $definitions['doc'] : '' );
 			// $openHTML = pre text (html)
-			$openHTML = (isset($definitions['open']) ? $definitions['open'] : '');
+			$openHTML = ( isset( $definitions['open'] ) ? $definitions['open'] : '' );
 			// $closeHTML = post text (html)
-			$closeHTML = (isset($definitions['close']) ? $definitions['close'] : '');
+			$closeHTML = ( isset( $definitions['close'] ) ? $definitions['close'] : '' );
 			// This next section figures out the number of arguments this
 			//   particular attribute requires.
 			$a = substr_count( $openHTML, $mark ) + substr_count( $closeHTML, $mark );
@@ -122,7 +122,7 @@ class SpecialLocalTag extends SpecialPage {
 			} elseif ( $openHTML || $closeHTML ) {
 				$syntax = '&lt;localtag '.$attribute.$arglist.' /&gt;';
 			} else {
-				$syntax = $this->msg('localtag-missing-html', $attribute);
+				$syntax = $this->msg( 'localtag-missing-html', $attribute );
 			}
 			// add attribute to the table
 			// add documentation to the table
@@ -154,7 +154,7 @@ class SpecialLocalTag extends SpecialPage {
 			}
 			// if we're showing CSS, add it to the table
 			if ( $css ) {
-				$css = (isset($definitions['css']) ? $definitions['css'] : '');
+				$css = ( isset($definitions['css'] ) ? $definitions['css'] : '' );
 				$table .= '| class="mono"| <nowiki>'.$css."</nowiki>\n";
 			}
 		} // end foreach $subs, $attribute, $definitions
