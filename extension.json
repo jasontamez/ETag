@@ -18,7 +18,9 @@
 		"ArgumentMarker": "@@",
 		"VerboseBadAtts": false,
 		"ShowHTMLOnSpecialPage": false,
-		"ShowCSSOnSpecialPage": false
+		"ShowCSSOnSpecialPage": false,
+		"Substitutions": [
+		]
 	},
 	"ExtensionMessagesFiles": {
 		"LocalTagAlias": "LocalTag.i18n.alias.php"
